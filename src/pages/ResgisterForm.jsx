@@ -13,7 +13,7 @@ const initialValues = {
 const ResgisterForm = () => {
 
     const [values, setValues] = useState(initialValues);
-
+    const [err, seterr] = useState({});
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -23,9 +23,20 @@ const ResgisterForm = () => {
         })
     }
 
+    const validate=()=>{
+        let temp={};
+        temp.BusinessDescription=values.BusinessDescription?"":"Mandatory";
+        temp.email=(/$|.+@.+..+/).test(values.email)?"":"check again";
+        temp.phoneNo=values.phoneNo.length>9?"":"Mandatory 10";
+        seterr({
+            ...temp
+        })
+        return Object.values(temp).every(x=>x==="");
+    }
+
     const handleSubmit=(e)=>{
         e.preventDefault();
-        // if(validate())
+        if(validate())
        window.alert("test");
     }
 
