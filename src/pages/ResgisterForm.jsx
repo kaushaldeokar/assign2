@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Grid } from '@mui/material'
 import { TextField } from '@mui/material';
-
+import Button from '@mui/material/Button';
 
 const initialValues = {
     BusinessDescription: "",
@@ -15,13 +15,20 @@ const ResgisterForm = () => {
     const [values, setValues] = useState(initialValues);
 
 
-    const handleInputChange=(e)=>{
-        const {name ,value}=e.target;
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
         setValues({
             ...values,
-            [name]:value,
+            [name]: value,
         })
     }
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        // if(validate())
+       window.alert("test");
+    }
+
 
     return (
         <div>
@@ -56,6 +63,12 @@ const ResgisterForm = () => {
                         value={values.phoneNo}
                         onChange={handleInputChange}
                     />
+
+                </Grid>
+
+                <Grid item xs={6} md={8}>
+
+                    <Button variant="contained" onClick={handleSubmit}>Submit</Button>
 
                 </Grid>
 
